@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>net.sandum</groupId>
+        <artifactId>basepom</artifactId>
+        <version>1</version>
+    </parent>
+
+    <groupId>net.sandum.sportsml</groupId>
+    <artifactId>sportsml</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>SportsML</name>
+    <packaging>pom</packaging>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <modules>
+        <module>jaxb-model</module>
+        <!-- module>persistence</module -->
+    </modules>
+
+    <repositories>
+
+        <repository>
+            <id>sandum-release</id>
+            <name>Inhouse Internal Release Repository</name>
+            <url>http://sandum.net/repo/release</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>sandum-snapshot</id>
+            <name>Inhouse Internal Snapshot Repository</name>
+            <url>http://sandum.net/repo/snapshot</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+    </repositories>
+
+</project>
+

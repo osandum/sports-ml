@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>net.sandum.sportsml</groupId>
+        <artifactId>sportsml</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>sportsml-jaxb-model</artifactId>
+
+    <name>SportsML JAXB model</name>
+    <!--    Download: http://www.iptc.org/std/SportsML/SportsML_2.2.zip -->
+    <!-- Online XSDs: http://www.iptc.org/std-dev/SportsML/2.2/specification/ -->
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <sportsml>${project.build.directory}/download/SportsML</sportsml>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <artifactId>maven-download-plugin</artifactId>
+                <version>1.1.0</version>
+                <executions>
+                    <execution>
+                        <id>fetch-xsds</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>http://www.iptc.org/std/SportsML/SportsML_2.2.zip</url>
+                            <unpack>true</unpack>
+                            <outputDirectory>${sportsml}</outputDirectory>
+                            <md5>7b00aaa0dac6f132681c6c443113b4b3</md5>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <extension>true</extension>
+                    <schemaDirectory>${sportsml}/2.2/specification</schemaDirectory>
+                    <schemaFiles>
+                        sportsml.xsd
+                    </schemaFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
